@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(2, 2, 2, 0.87);
+  background-color: white;
+  --color-primary: #E80071;
+  --color-secondary: #FFEAF6;
+  /* #F0BABF #F7E0E2 */
+}
+
+@theme {
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+}
+
+@layer utilities {
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+
+  /* Add similar classes for secondary and other colors you need */
+}
+
+@layer base {
+  :root {
+      --primary: 334 100% 45%;
+      /* Your pink color #E80071 */
+      --primary-foreground: 0 0% 98%;
+      --secondary: 340 100% 96%;
+      /* Your secondary color #FFEAF6 */
+      --secondary-foreground: 0 0% 9%;
+      /* other colors... */
+    }
+
+  :root {
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+  }}
+
