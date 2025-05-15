@@ -36,7 +36,7 @@ interface ProductsResponse {
 export const productsApi = createApi({
   reducerPath: "productsApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000/api",
+    baseUrl: "https://glamluv.duckdns.org/api/products",
     credentials: "include",
   }),
   endpoints: (builder) => ({
