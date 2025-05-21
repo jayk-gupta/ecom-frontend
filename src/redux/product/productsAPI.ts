@@ -1,4 +1,5 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { createBaseQuery } from "../user/baseAPI";
 
 interface ProductColor {
   hex_value: string;
@@ -23,7 +24,7 @@ interface Filters {
   category?: string;
   brand?: string;
   tag_list?: string[];
-  page?:number
+  page?: number;
 }
 
 interface ProductsResponse {
@@ -32,17 +33,13 @@ interface ProductsResponse {
   totalPages: number;
 }
 
-
 export const productsApi = createApi({
   reducerPath: "productsApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://glamluv.duckdns.org/api/",
-    credentials: "include",
-  }),
+  baseQuery: createBaseQuery("products"),
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, Filters>({
       query: (filters) => ({
-        url: "/products",
+        url: "",
         params: {
           ...filters,
           page: filters.page,
@@ -56,4 +53,4 @@ export const productsApi = createApi({
   }),
 });
 
-export const {useGetProductsQuery,useGetProductByIdQuery} = productsApi
+export const { useGetProductsQuery, useGetProductByIdQuery } = productsApi;

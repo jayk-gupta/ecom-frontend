@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetProductByIdQuery } from "../../redux/productsSlice";
+import { useGetProductByIdQuery } from "../../redux/product/productsAPI";
 import ProductColors from "./ProductColors";
 import ProductCartValue from "./ProductCartValue";
 import { useAddToCartMutation } from "@/redux/cart/cartAPI";
