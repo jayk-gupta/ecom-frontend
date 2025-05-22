@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import faqs from "./FAq.json";
+import { BaselinePlus, SharpMinus } from "../Icons/Icons";
 
 // const f =
 // {
@@ -8,7 +9,7 @@ import faqs from "./FAq.json";
 // },
 
 function Faq() {
-    const [selectedFaq,setSelectedFaq] = useState<number>(0)
+  const [selectedFaq, setSelectedFaq] = useState<number | null>(3);
   return (
     <div className="w-2/5 flex flex-col gap-2">
       {faqs.map((faq) => (
@@ -16,16 +17,36 @@ function Faq() {
           className="flex flex-col gap-12 border-b-3 border-gray-300 py-4"
           key={faq.id}
         >
-          <h3 className="font-semibold text-xl">
-            {faq.question} <span></span>
+          <h3 className="font-semibold text-xl flex justify-between">
+            {faq.question}
+            <span className="relative borde flex  ">
+              {selectedFaq === faq.id ? (
+                <button
+                  className="relative cursor-pointer border w-6 h-6"
+                  onClick={() => {
+                    setSelectedFaq(null)
+                }}
+             
+                >
+                  <BaselinePlus
+                    className="text-3xl absolute
+               top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 
+              "
+                  />
+                </button>
+              ) : (
+                  <button className="relative cursor-pointer h-6 w-6 border"
+                  onClick={() => {
+                    setSelectedFaq(faq.id);
+                  }}>
+                  <SharpMinus className="text-3xl absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
+                </button>
+              )}
+            </span>
           </h3>
-          <p
-                  className={`text-lg 
-                ${selectedFaq === faq.id ? "block" : "hidden"
-            } `}
-          >
-            {faq.answer}
-          </p>
+          {selectedFaq === faq.id && (
+            <p className={`text-lg } `}>{faq.answer}</p>
+          )}
         </div>
       ))}
     </div>
