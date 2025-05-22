@@ -1,8 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
 import faqs from "./FAq.json";
 import { BaselinePlus, SharpMinus } from "../Icons/Icons";
-
-
 function Faq() {
   const [selectedFaq, setSelectedFaq] = useState<number | null>(3);
   return (
@@ -17,11 +15,10 @@ function Faq() {
             <span className="relative borde flex  ">
               {selectedFaq === faq.id ? (
                 <button
-                  className="relative cursor-pointer border w-6 h-6"
+                  className="relative cursor-pointer w-6 h-6"
                   onClick={() => {
-                    setSelectedFaq(null)
-                }}
-             
+                    setSelectedFaq(null);
+                  }}
                 >
                   <BaselinePlus
                     className="text-3xl absolute
@@ -30,10 +27,12 @@ function Faq() {
                   />
                 </button>
               ) : (
-                  <button className="relative cursor-pointer h-6 w-6 border"
+                <button
+                  className="relative cursor-pointer h-6 w-6"
                   onClick={() => {
                     setSelectedFaq(faq.id);
-                  }}>
+                  }}
+                >
                   <SharpMinus className="text-3xl absolute  top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 " />
                 </button>
               )}
