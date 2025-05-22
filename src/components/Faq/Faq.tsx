@@ -1,12 +1,7 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import faqs from "./FAq.json";
 import { BaselinePlus, SharpMinus } from "../Icons/Icons";
 
-// const f =
-// {
-//     "question": "What payment methods do you accept?",
-//     "answer": "We accept credit/debit cards, UPI, net banking, and wallets like Paytm, PhonePe, and Google Pay."
-// },
 
 function Faq() {
   const [selectedFaq, setSelectedFaq] = useState<number | null>(3);
