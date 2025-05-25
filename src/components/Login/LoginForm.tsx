@@ -27,7 +27,7 @@ function LoginForm() {
       const response = await LogIn(values).unwrap();
       console.log(response);
       dispatch(setCredentials({ email: values.email }));
-       toast("Logged In successfully")
+      toast("Logged In successfully");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -50,6 +50,7 @@ function LoginForm() {
               name="password"
               label="Password"
               placeholder="password"
+              type="password"
               form={form}
               className="py-6"
             />
