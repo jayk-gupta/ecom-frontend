@@ -51,6 +51,7 @@ function LoginForm() {
               label="Password"
               placeholder="password"
               type="password"
+              autoComplete="new-password"
               form={form}
               className="py-6"
             />
