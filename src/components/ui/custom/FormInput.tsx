@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { FormControl, FormField, FormLabel, FormMessage } from "../form"
+import { FormControl, FormField, FormLabel, FormMessage } from "../form";
 import { Input } from "../input";
 import { FieldValues, Path, UseFormReturn } from "react-hook-form";
 
@@ -13,6 +13,7 @@ interface FormInputProps<T extends FieldValues> {
   className?: string;
   children?: ReactNode;
   autoComplete?: string;
+  inputClassName?: string;
 }
 
 export const FormInput = <T extends FieldValues>({
@@ -23,6 +24,7 @@ export const FormInput = <T extends FieldValues>({
   form,
   disabled = false,
   className = "",
+  inputClassName = "",
   autoComplete,
 }: FormInputProps<T>) => {
   return (
@@ -35,7 +37,7 @@ export const FormInput = <T extends FieldValues>({
           <FormControl>
             <div className="relative pt-2  flex items-center">
               <Input
-                className=" "
+                className={inputClassName}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
                 type={type}

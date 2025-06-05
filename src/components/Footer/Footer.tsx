@@ -1,7 +1,31 @@
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
+import {z} from "zod"
+import { FormInput } from "../ui/custom/FormInput";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "../ui/form";
 const linkStyle = "hover:text-[#EB008B]";
+const subscribeSchema = z.object({
+  email: z.string().email("Invalid email address"), // Example validation
+});
+type SubscribeFormData = z.infer<typeof subscribeSchema>;
 
 function Footer() {
+
+  const onSubmit = (data: SubscribeFormData) => {
+    // Only runs if validation passes
+    console.log("Form data:", data);
+    toast("Subscribed successfully");
+  };
+
+  const form = useForm<SubscribeFormData>({
+    resolver: zodResolver(subscribeSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+
   return (
     <footer className="mt-12 lg:px-48 lg:pt-12 flex flex-col bg-secondary md:p-6 sm:py-6 py-2 bg-[#FFEAF6]">
       <div className="flex pb-12 sm:flex-col md:flex-row sm:items-center flex-col gap-12 items-center">
@@ -10,13 +34,21 @@ function Footer() {
           <h3 className="text-2xl font-bold">Get 15% OFF</h3>
           <p>Your first order & get our latest promotions!</p>
           <div className="flex flex-col gap-4 items-start">
-            <input
-              type="email"
-              className="bg-white border-2 lg:p-4 w-full p-2"
-              placeholder="Enter your email"
-              aria-label="Email address"
-            />
-            <button className="bg-[#EB008B] hover:cursor-pointer  hover:bg-[#ff029e] w-full lg:p-4 p-2 text-white font-bold uppercase">
+            <Form {...form}>
+              <FormInput
+                name="email"
+                type="email"
+                className="w-full"
+                inputClassName=" lg:p-4 w-full h-12 bg-white"
+                label=""
+                form={form}
+                placeholder="Enter your email"
+              />
+            </Form>
+            <button
+              className="bg-[#EB008B] hover:cursor-pointer  hover:bg-[#ff029e] w-full lg:p-4 p-2 text-white font-bold uppercase"
+              onClick={form.handleSubmit(onSubmit)}
+            >
               Subscribe
             </button>
           </div>
